@@ -79,6 +79,7 @@
 애플리케이션 컨텍스트는 `빈을 등록하고 관리하는 빈 팩토리`입니다. 다음을 보면서 어떻게 빈으로 등록하는지를 고민해보세요!
 
 - DataSource  
+JDBC를 통해서 DB를 사용하려면 `DB Connection 오브젝트`가 필요합니다. 모든 `데이터 액세스에서 사용되는 필수 리소스`이기 때문에 스프링 에서는 DataSource를 하나의 독립된 빈으로 등록되어지도록 합니다. `org.apache.tomcat.jdbc.pool.DataSource`는 `DB Connection Pool` 기능을 적용한 오브젝트로써 `스프링에서 권장하는 DataSource`입니다.
 ```
 	<context:property-placeholder location="classpath:application.properties" /> 
 	
@@ -193,10 +194,19 @@ XML에서 Bean태그를 통해서 빈으로 등록했다면 이 어노테이션을 클래스에 적용해서 해
 - 토비의 스프링 Vol.1 6장 AOP절을 참고해서 따로 공부합시다.
 
 ## 5. 스프링 버전 별 빈 등록 방식  
+보통은 스프링 3.0 이상의 버전을 사용하기 때문에 XML기반이냐 자바 코드 기반이냐를 구분하지 않으셔도 됩니다.
 - Spring 2.5 : <bean>, Bean Scan 
 - Spring 3.0 : <bean>, Bean Scan, Java Code  
 - Spring 4.0 : <bean>, Bean Scan, Java Code  
 
+## 6. Database ORM Framework  
+스프링 JDBC는 퍼시스턴스 계층에서 활용되는 다양한 데이터 액세스 기술인 `ORM Framework`를 지원합니다.  단순하게 스프링 JDBC를 이용하는 것 보다는 `ORM Framework도 같이 활용하는 것이 좋습니다.`  
+- ibatis, Mybatis (DataSourceTransactionManager)
+- JPA, Hibernate (JpaTransactionManager)
+
+*이제부터는 여러분들의 영역입니다. *
+
+---
 
 ## Java Configuration
 스프링 3.1 에서부터 확실하게 XML 기반의 스프링 애플리케이션 설정을 코드 기반으로 설정하는 것을 지원합니다. 이 부분에 대해서는 [여기](https://github.com/kdevkr/spring-demo-java)에서 알 수 있습니다.
