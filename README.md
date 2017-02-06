@@ -14,4 +14,24 @@ root-context.xml을 애플리케이션 컨텍스트라고 합니다. 애플리케이션 컨텍스트는 빈 
 스프링이 IoC로 관리하는 POJO(Plain Old Java Object)입니다. 주의 해야할 부분은 스프링 애플리케이션에서 만드는 모든 오브젝트가 빈인 것은 아닙니다. 
 
 ##### 1.4 DI(Dependency Injection)
-정확한 용어는 아니지만 DI를 의존성 주입기능이라고 부르겠습니다. 스프링 애플리케이션에서는 
+정확한 용어는 아니지만 DI를 의존성 주입기능이라고 부르겠습니다. 스프링 애플리케이션에서는 IoC로 관리하는 빈을 해당 클래스에서 가져와서 사용할 수 있도록 의존성 주입기능을 제공합니다. 따라서, 의존성 주입기능의 전제조건은 어떠한 방식으든 빈으로 등록되어 있어야 한다는 것입니다.
+
+### 2. 메타정보 설정(Configuration)  
+
+![architecture](assets/images/architecture.PNG)
+
+##### 2.1 web.xml  
+
+- ContextLoader  
+```
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+```
+
+
