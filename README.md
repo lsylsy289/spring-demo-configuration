@@ -129,24 +129,26 @@
 	</beans:bean>
 ```
 
-## 3. Dependency Injection  
+## 3. 의존성 주입 기능(Dependency Injection)  
 그럼 추가적으로 어노테이션을 통해서 빈으로 등록해서 관리하도록 하는 방법과 의존성 주입 기능을 하도록 지원하는 방법을 알아봅시다.
 
 ### 3.1 Bean Annotation  
 어노테이션 기반의 빈 등록방법을 이용하기 위해서는 `<annotation-driven/>` 을 통해서 스프링 어노테이션 지원을 활성화해야 합니다.
 
 - @Component  
+XML에서 Bean태그를 통해서 빈으로 등록했다면 이 어노테이션을 클래스에 적용해서 해당 클래스를 빈으로 등록하는 것을 지원합니다.
 ```
 
 ```
 
 - @Service  
+@Component와는 기능적으로 같으나 단순히 이 빈은 서비스 로직에서 사용된다라는 `가독성`을 가집니다.
 ```
 
 ```
 
 - @Repository  
-`@Component와 @Service`와는 다르게 `SQLException`에 대해서 `DataAccessException`으로 변환하도록 지원한다. 
+`@Component와 @Service`와는 다르게 `SQLException`에 대해서 `DataAccessException`으로 변환하도록 지원합니다.
 
 ```
 
@@ -167,3 +169,7 @@
 
 ```
 
+## 4. 관점 지향 프로그래밍(Aspect Oriented Programming)  
+`AOP`는 `IoC/DI`와 더불어 `스프링의 대표 기반기술`중의 하나입니다. 스프링의 기술 중에서 가장 이해하기 힘든 난해한 개념을 가진 기술이기 때문에 저도 제대로 설명드리기 힘듬니다. AOP를 적용해서 이용하는 대표적인 대상은 `선언적 트랜잭션`입니다. 바로 `@Transactional`이죠. 그래서 `트랜잭션 매니저`를 서비스 로직에서 주입받지 않고서도 트랜잭션 커밋과 롤백을 지원하도록 할 수 있게 됩니다.
+
+- 토비의 스프링 Vol.1 6장 AOP절을 참고해서 따로 공부합시다.
