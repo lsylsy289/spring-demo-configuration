@@ -3,7 +3,7 @@
 *본 프로젝트는 스프링 프레임워크를 XML 기반으로 설정하는 것을 설명합니다.*  
 
 
-## 1. 용어 정리
+## 1. 용어 정리  
 ### 1.1 DD(Deployment Descriptor)  
 스프링 애플리케이션에서는 `web.xml`을 통해서 `배포 서술자`를 구현합니다. 배포 서술자는 애플리케이션 컨텍스트 및 서블릿, 필터등에 대한 설정을 하도록 되어 있습니다.
 
@@ -111,7 +111,7 @@
 ```
 
 ### 2.3 servlet-context.xml  
-서블릿 컨텍스트는 서블릿과 관련된 메타정보들을 설정합니다. 구조 상 빈 팩토리 역할도 합니다.
+서블릿 컨텍스트는 `서블릿과 관련된 메타정보`들을 설정합니다. 구조 상 빈 팩토리 역할도 합니다.
 
 - Resources  
 ```
@@ -119,6 +119,7 @@
 ```
 
 - ViewResolver  
+눈치 채셨나요? `프로퍼티`가 무엇을 의미하는지.. 바로 의존성 주입기능입니다. `JstlView`를 `viewClass`변수에 넣고 있네요  
 ```
 	<beans:bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -127,3 +128,42 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 ```
+
+## 3. Dependency Injection  
+그럼 추가적으로 어노테이션을 통해서 빈으로 등록해서 관리하도록 하는 방법과 의존성 주입 기능을 하도록 지원하는 방법을 알아봅시다.
+
+### 3.1 Bean Annotation  
+어노테이션 기반의 빈 등록방법을 이용하기 위해서는 `<annotation-driven/>` 을 통해서 스프링 어노테이션 지원을 활성화해야 합니다.
+
+- @Component  
+```
+
+```
+
+- @Service  
+```
+
+```
+
+- @Repository  
+`@Component와 @Service`와는 다르게 `SQLException`에 대해서 `DataAccessException`으로 변환하도록 지원한다. 
+
+```
+
+```
+
+### 3.2 Dependency Injection Annotation
+어노테이션 기반의 빈 등록방법이 있다면 `의존성 주입 기능을 지원하는 어노테이션`도 존재합니다.
+
+- @Autowired  
+이 어노테이션은 타입 기반의 주입을 먼저 시도하고 이름 기반으로 주입을 시도합니다.
+```
+
+```
+
+- @Resource  
+이 어노테이션은 이름 기반의 주입을 먼저 시도하고 타입 기반으로 주입을 시도합니다.
+```
+
+```
+

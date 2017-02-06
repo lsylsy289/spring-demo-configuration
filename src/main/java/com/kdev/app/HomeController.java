@@ -29,7 +29,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("{}", "JstlView Response - last");
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -43,6 +43,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/json", method = RequestMethod.GET)
 	public @ResponseBody Object json(){
+		logger.info("{}", "JsonView Response");
 		Map<String, Object> response = new HashMap<String, Object>();
 		
 		List<String> list = new ArrayList<String>();
@@ -54,9 +55,17 @@ public class HomeController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String html(){
-		return "index";
+	@RequestMapping(value = "/velocity", method = RequestMethod.GET)
+	public String velocity(){
+		logger.info("{}", "Velocity Template Engine Example - second");
+		return "velocity";
+	}
+	
+	
+	@RequestMapping(value = "/freemarker", method = RequestMethod.GET)
+	public String freemarker(){
+		logger.info("{}", "Freemarker Template Engine Example - first");
+		return "freemarker";
 	}
 	
 }
