@@ -103,13 +103,6 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 ```
 
-- MultipartResolver  
-```
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="${file.maxUploadSize}"></property>
-	</bean>
-```
-
 ### 2.3 servlet-context.xml  
 서블릿 컨텍스트는 `서블릿과 관련된 메타정보`들을 설정합니다. 구조 상 빈 팩토리 역할도 합니다.
 
@@ -127,6 +120,13 @@ As of Spring Framework 4.3, Velocity support has been deprecated due to six year
 		<beans:property name="order" value="2"/>
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+```
+
+- MultipartResolver  
+```
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="${file.maxUploadSize}"></beans:property>
 	</beans:bean>
 ```
 
