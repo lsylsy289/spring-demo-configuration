@@ -4,18 +4,19 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!--
-		web.xml 은 스프링 애플리케이션에서 빈의 생성과 관계설정 같은 제어를 담당하는 IoC Container 입니다. 
-		그러니까, 일종의 빈 팩토리이면서 애플리케이션 컨텍스트입니다. 애플리케이션 컨텍스트 별도의 정보(프로퍼티 또는 구별된 컨텍스트 파일들)를 참고해서 작업을 총괄합니다.
-		그리고 DD(Deployment Descriptor)라고 해서 웹 애플리케이션 배포 시에 필요한 정보들을 설정한다.
+		web.xml DD(Deployment Descriptor)라고 해서 웹 애플리케이션 배포 시에 필요한 정보들을 설정한다.
 	-->
 	
-	<!-- 루트 컨테이너로써 빈 팩토리를 추가합니다. -->
+	<!-- 
+		스프링 애플리케이션에서 빈의 생성과 관계설정 같은 제어를 담당하는 IoC Container 입니다. 
+		그러니까, 일종의 빈 팩토리이면서 애플리케이션 컨텍스트입니다. 애플리케이션 컨텍스트는 별도의 정보(프로퍼티 또는 구별된 컨텍스트 파일들)를 참고해서 작업을 총괄합니다.
+	 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 	
-	<!-- ContextLoaderListener는 Root-Context Container를 호출하게 됩니다.  -->
+	<!-- ContextLoaderListener는 애플리케이션 컨텍스트를 호출하게 됩니다.  -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
