@@ -120,10 +120,11 @@
 
 - ViewResolver  
 눈치 채셨나요? `프로퍼티`가 무엇을 의미하는지.. 바로 의존성 주입기능입니다. `JstlView`를 `viewClass`변수에 넣고 있네요  
+As of Spring Framework 4.3, Velocity support has been deprecated due to six years without active maintenance of the Apache Velocity project  
 ```
-	<beans:bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean id="jstlViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-		<beans:property name="order" value="3"/>
+		<beans:property name="order" value="2"/>
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>

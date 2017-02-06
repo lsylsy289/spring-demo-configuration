@@ -55,13 +55,6 @@ public class HomeController {
 		return response;
 	}
 	
-	@RequestMapping(value = "/velocity", method = RequestMethod.GET)
-	public String velocity(){
-		logger.info("{}", "Velocity Template Engine Example - second");
-		return "velocity";
-	}
-	
-	
 	@RequestMapping(value = "/freemarker", method = RequestMethod.GET)
 	public String freemarker(){
 		logger.info("{}", "Freemarker Template Engine Example - first");
