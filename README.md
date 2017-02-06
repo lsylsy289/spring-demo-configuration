@@ -195,9 +195,9 @@ XML에서 Bean태그를 통해서 빈으로 등록했다면 이 어노테이션을 클래스에 적용해서 해
 
 ## 5. 스프링 버전 별 빈 등록 방식  
 보통은 스프링 3.0 이상의 버전을 사용하기 때문에 XML기반이냐 자바 코드 기반이냐를 구분하지 않으셔도 됩니다.
-- Spring 2.5 : <bean>, Bean Scan 
-- Spring 3.0 : <bean>, Bean Scan, Java Code  
-- Spring 4.0 : <bean>, Bean Scan, Java Code  
+- Spring 2.5 : \<bean\>, Bean Scan 
+- Spring 3.0 : \<bean\>, Bean Scan, Java Code  
+- Spring 4.0 : \<bean\>, Bean Scan, Java Code  
 
 ## 6. Database ORM Framework  
 스프링 JDBC는 퍼시스턴스 계층에서 활용되는 다양한 데이터 액세스 기술인 `ORM Framework`를 지원합니다.  단순하게 스프링 JDBC를 이용하는 것 보다는 `ORM Framework도 같이 활용하는 것이 좋습니다.`  
