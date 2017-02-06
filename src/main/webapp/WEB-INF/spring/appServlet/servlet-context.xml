@@ -9,6 +9,7 @@
 		">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<context:property-placeholder location="classpath:application.properties" /> 
 	
 	<!-- 스프링 애노테이션 지원을 활성화한다. -->
 	<annotation-driven />
@@ -55,6 +56,11 @@
  
  
  <!-- https://docs.spring.io/spring/docs/current/spring-framework-reference/html/view.html -->
+	
+	<!-- 파일 업로드를 위한 멀티파트 리졸버를 등록한다. -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="${file.maxUploadSize}"></beans:property>
+	</beans:bean>
 	
 	<!-- 해당 패키지를 기준으로 빈 등록 처리기를 활성화한다. -->
 	<context:component-scan base-package="com.kdev.app" />

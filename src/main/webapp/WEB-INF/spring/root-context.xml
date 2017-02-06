@@ -34,10 +34,4 @@
 	
 	<!-- 트랜잭션 매니저가 어노테이션 으로 선언적 트랜잭션을 지원하도록 활성화 한다. -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
-	<!-- 파일 업로드를 위한 멀티파트 리졸버를 등록한다. -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="${file.maxUploadSize}"></property>
-	</bean>
-
 </beans>
