@@ -2,17 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 프로퍼티를 활용할 수 있도록 한다. -->
 	<context:property-placeholder location="classpath:application.properties" /> 
 	
 	<!-- 스프링에서는 톰캣 JDBC 커넥션 풀을 권장하기 때문에 커넥션풀을 설정한다. -->
-	<!-- ConnectionPool / Connection List -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" >
 		<property name="driverClassName" value="${jdbc.driver}"/>
 		<property name="url" value="${jdbc.url}"/>
@@ -28,7 +28,6 @@
 	</bean>
 	
 	<!-- 트랜잭션 매니저를 등록한다. -->
-	<!-- Transaction Manager -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
@@ -40,4 +39,5 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="${file.maxUploadSize}"></property>
 	</bean>
+
 </beans>

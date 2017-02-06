@@ -3,21 +3,24 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-	<!-- 모든 서블릿과 필터를 공유하는 루트 컨테이너를 정의한다. -->
-	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!--
+		web.xml 은 스프링 애플리케이션에서 빈의 생성과 관계설정 같은 제어를 담당하는 IoC Container 입니다. 
+		그러니까, 일종의 빈 팩토리이면서 애플리케이션 컨텍스트입니다. 애플리케이션 컨텍스트 별도의 정보(프로퍼티 또는 구별된 컨텍스트 파일들)를 참고해서 작업을 총괄합니다.
+		그리고 DD(Deployment Descriptor)라고 해서 웹 애플리케이션 배포 시에 필요한 정보들을 설정한다.
+	-->
+	
+	<!-- 루트 컨테이너로써 빈 팩토리를 추가합니다. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
 	</context-param>
 	
-	<!-- 모든 서블릿과 필터를 공유하는 루트 컨테이너를 생성한다. -->
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<!-- ContextLoaderListener는 Root-Context Container를 호출하게 됩니다.  -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- 애플리케이션 요청에 대해서 수행하는 디스패쳐 서블릿을 등록한다. -->
-	<!-- Processes application requests -->
+	<!-- 애플리케이션 요청에 대해서 수행하는 디스패쳐 서블릿을 등록합니다.  -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -26,11 +29,52 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+		
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	
+	<!-- http://emflant.tistory.com/97 -->
+	<!-- 인코딩을 위해서 설정합니다. -->
+ 	<filter>
+	    <filter-name>encodingFilter</filter-name>
+	    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	    <!-- 모든 인코딩을 강제로 변환하기 위해서는 forceEncoding를 true로 설정하세요 -->
+	    <init-param>
+	        <param-name>encoding</param-name>
+	        <param-value>UTF-8</param-value>
+	    </init-param>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>encodingFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- http://bongster88.blogspot.kr/2014/07/spring-rest-api-put-delete-404.html -->
+	<!-- PUT, DELETE 메소드를 지원하기 위해서 설정합니다. -->
+	<filter>
+		<filter-name>httpMethodFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	    <filter-name>httpMethodFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- PUT 메소드를 통해서 데이터를 전송하기 위해서 설정합니다. -->
+	<filter>
+        <filter-name>HttpPutFormContentFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+    </filter>
 
+    <filter-mapping>
+        <filter-name>HttpPutFormContentFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
